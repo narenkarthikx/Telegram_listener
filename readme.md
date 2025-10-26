@@ -70,11 +70,8 @@ Sample saved record:
 ## Safety & Privacy
 - The script uses your Telegram account to access channels you have access to. Do not share `gate_listener_session.session`.
 
-## Next steps / Improvements
+## Open for contributions
 - Add command-line arguments for channels, keywords and limits.
 - Add logging and retry logic for failed downloads.
 - Add unit tests for message parsing and filtering.
 
----
-
-If you want, I can also add a short example `listener.py` snippet or add command-line flags — tell me which you prefer.

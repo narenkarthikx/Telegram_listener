@@ -50,21 +50,55 @@ Filters messages containing the keywords
 
 Downloads PDF files automatically to downloads/ folder
 
-Saves messages in messages.json
+## GATE Telegram Study Material Collector
 
-Listens for new messages in real-time
+This project listens to Telegram channels, fetches historical messages, filters them by keywords, and downloads attached PDF study materials. It also saves collected messages to `messages.json` and can run continuously to capture new posts in real time.
 
-Stop the listener anytime with Ctrl+C
+## Features
+- Fetch historical messages from one or more Telegram channels
+- Filter messages by keywords (e.g., "GATE", "DBMS", "notes")
+- Auto-download PDFs and save them to the `downloads/` folder
+- Save message metadata to `messages.json`
+- Keep a persistent Telegram session in `gate_listener_session.session`
 
-🗂️ Files Created
+## Quick start
+1. Install dependencies
 
-messages.json – All collected messages
+```powershell
+pip install telethon
+```
 
-downloads/ – PDF files folder
+2. Run the listener
 
-gate_listener_session.session – Telegram login session
+```powershell
+python listener.py
+```
 
-📑 Output Example
+Note: On first run you'll be prompted for your phone number and the Telegram login code.
+
+## Configuration
+Open `listener.py` and edit the following variables to suit your needs:
+
+- `channels_to_listen` — list of channel usernames or IDs, e.g. `['gatecsitstudymaterial']`
+- `KEYWORDS` — list of keywords to filter messages. Use `[]` to save everything.
+- `HISTORICAL_LIMIT` — number of past messages to fetch per channel (e.g., `100`).
+
+Example (in `listener.py`):
+
+```python
+channels_to_listen = ['gatecsitstudymaterial']
+KEYWORDS = ["DBMS", "GATE", "PYQ", "notes", "pdf", "syllabus"]
+HISTORICAL_LIMIT = 100
+```
+
+## Output / Files
+- `messages.json` — stored message records and metadata
+- `downloads/` — folder where PDF files are saved
+- `gate_listener_session.session` — Telegram session file (keeps you logged in)
+
+Sample saved record:
+
+```json
 {
   "id": 123,
   "channel": "gatecsitstudymaterial",
@@ -73,11 +107,26 @@ gate_listener_session.session – Telegram login session
   "timestamp": "2024-01-15T10:30:00",
   "type": "historical"
 }
+```
 
-🛠️ Troubleshooting
+## Usage notes
+- The script fetches historical messages up to `HISTORICAL_LIMIT` and then listens for new messages.
+- Stop the listener with Ctrl+C.
+- If you want to collect everything, set `KEYWORDS = []`.
 
-No messages? Check if you've joined the channels
+## Troubleshooting
+- No messages? Make sure your account has joined the channel(s) you want to read.
+- PDFs not downloading: check internet access and file permissions for the `downloads/` folder.
+- Login problems: delete `gate_listener_session.session` and re-run to re-authenticate.
 
-PDFs not downloading? Check your internet connection
+## Safety & Privacy
+- The script uses your Telegram account to access channels you have access to. Do not share `gate_listener_session.session`.
 
-Login issues? Delete .session file and try again
+## Next steps / Improvements
+- Add command-line arguments for channels, keywords and limits.
+- Add logging and retry logic for failed downloads.
+- Add unit tests for message parsing and filtering.
+
+---
+
+If you want, I can also add a short example `listener.py` snippet or add command-line flags — tell me which you prefer.

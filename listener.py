@@ -9,12 +9,7 @@ session_name = 'gate_listener_session'
 
 channels_to_listen = ['gatecsitstudymaterial']
 KEYWORDS = [
-    "DBMS", "database", "SQL", "OS", "operating system", "CN", "computer network", 
-    "algorithm", "data structure", "compiler", "COA", "computer architecture",
-    "discrete", "mathematics", "TOC", "theory of computation", "aptitude",
-    "GATE", "PYQ", "previous year", "syllabus", "notes", "material",
-    "study", "exam", "preparation", "question", "solution", "answer",
-    "pdf", "document", "file", "download", "book", "guide"
+    "DBMS"
 ]
 
 HISTORICAL_LIMIT = 100
